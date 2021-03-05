@@ -10,7 +10,7 @@ RUN install_packages \
   wget 
 
 RUN install_packages \
-  python3-dev python3-setuptools python3-wheel python3-pip python3-pil
+  python3-dev python3-setuptools python3-wheel python3-pip python3-pillow
 
 RUN mkdir -p /tmp/sdk && \
   cd /tmp/sdk && \
