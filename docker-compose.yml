@@ -5,8 +5,6 @@ services:
       context: ./inkyshot
     privileged: true
     restart: unless-stopped
-    environment:
-      IMG_URL: https://previews.123rf.com/images/nuage03/nuage031802/nuage03180200016/94757841-vector-seamless-abstract-pattern-in-red-and-white-optical-illusion-.jpg
     labels:
       io.balena.features.balena-api: "1"
       io.balena.features.supervisor-api: "1"
