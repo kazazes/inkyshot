@@ -1,14 +1,16 @@
 FROM balenalib/raspberry-pi-python:3.7
 
-# RUN ["cross-build-start"]
+RUN ["cross-build-start"]
 
 RUN install_packages \
   imagemagick \
   unzip \
   wiringpi \
   p7zip-full \
-  wget \
-  python3-pillow
+  wget 
+
+COPY pip.conf /etc/pip.conf
+RUN pip3 install --upgrade pip spidev RPi.GPIO Pillow
 
 RUN mkdir -p /tmp/sdk && cd /tmp/sdk && \
   wget http://www.waveshare.net/w/upload/9/9a/12.48inch_e-Paper_Module_Code_RPI.7z && \
@@ -27,6 +29,6 @@ RUN wget https://github.com/louwrentius/waveshare-12.48inch-3-color-e-ink/archiv
 COPY images images
 COPY entrypoint.sh entrypoint.sh
 
-# RUN ["cross-build-end"]
+RUN ["cross-build-end"]
 
 CMD [ "/usr/app/entrypoint.sh" ]
