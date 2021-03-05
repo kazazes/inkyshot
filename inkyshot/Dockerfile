@@ -1,6 +1,6 @@
 FROM balenalib/raspberry-pi-python:3.7
 
-# RUN ["cross-build-start"]
+RUN ["cross-build-start"]
 
 RUN install_packages \
   imagemagick \
@@ -29,6 +29,6 @@ RUN wget https://github.com/louwrentius/waveshare-12.48inch-3-color-e-ink/archiv
 COPY images images
 COPY entrypoint.sh entrypoint.sh
 
-# RUN ["cross-build-end"]
+RUN ["cross-build-end"]
 
 CMD [ "/usr/app/entrypoint.sh" ]
