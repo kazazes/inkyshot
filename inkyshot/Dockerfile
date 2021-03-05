@@ -9,7 +9,7 @@ RUN install_packages \
   p7zip-full \
   wget
 
-# RUN pip3 install RPi.GPIO spidev
+RUN pip3 install --upgrade wheel pip RPi.GPIO spidev Pillow
 
 RUN mkdir -p /tmp/waveshare-sdk && \
   cd /tmp/waveshare-sdk && \
