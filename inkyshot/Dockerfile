@@ -1,4 +1,4 @@
-FROM balenalib/raspberry-pi-debian-python:3.7-buster-build
+FROM balenalib/raspberry-pi-debian-python:3.7-buster
 
 # RUN ["cross-build-start"]
 
@@ -6,7 +6,8 @@ RUN install_packages \
   imagemagick \
   unzip \
   wiringpi \
-  p7zip-full
+  p7zip-full \
+  wget
 
 # RUN pip3 install RPi.GPIO spidev
 
@@ -24,8 +25,7 @@ WORKDIR /usr/app
 RUN wget https://github.com/louwrentius/waveshare-12.48inch-3-color-e-ink/archive/main.zip && \
   unzip main.zip && \
   mv waveshare-12.48inch-3-color-e-ink-main waveshare-display &&\
-  rm -rf main.zip \
-  && ls -al
+  rm -rf main.zip 
 
 COPY images images
 COPY entrypoint.sh entrypoint.sh
