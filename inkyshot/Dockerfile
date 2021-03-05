@@ -7,18 +7,19 @@ RUN install_packages \
   unzip \
   wiringpi \
   p7zip-full \
-  wget
+  wget 
 
-RUN pip3 install --upgrade wheel pip RPi.GPIO spidev Pillow
+RUN install_packages \
+  python3-dev python3-setuptools python3-wheel python3-pip python3-pillow
 
-RUN mkdir -p /tmp/waveshare-sdk && \
-  cd /tmp/waveshare-sdk && \
+RUN mkdir -p /tmp/sdk && \
+  cd /tmp/sdk && \
   wget http://www.waveshare.net/w/upload/9/9a/12.48inch_e-Paper_Module_Code_RPI.7z && \
-  7z x 12.48inch_e-Paper_Module_Code_RPI.7z  -r -o./sdk && \
-  chmod 777 -R sdk && \
-  mv sdk /opt/waveshare-sdk && \
+  7z x 12.48inch_e-Paper_Module_Code_RPI.7z  -r -o./waveshare-sdk && \
+  chmod 777 -R waveshare-sdk && \
+  mv waveshare-sdk /opt/ && \
   cd /opt/waveshare-sdk && \
-  rm -rf /tmp/waveshare-sdk 
+  rm -rf /tmp/sdk 
 
 WORKDIR /usr/app
 
