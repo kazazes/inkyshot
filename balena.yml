@@ -13,7 +13,7 @@ assets:
 data:
   applicationEnvironmentVariables:
     - UPDATE_HOUR: 9
-    - TZ: 'Europe/London'
+    - TZ: 'Americas/New_York'
     - QOD_CATEGORY: 'inspire'
     - FONT: 'AmaticSC'
     - TEST_CHARACTER: 'a'

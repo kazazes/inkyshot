@@ -1,6 +1,6 @@
 FROM balenalib/raspberry-pi-debian-python:3.7-buster
 
-RUN ["cross-build-start"]
+# RUN ["cross-build-start"]
 
 RUN pip3 install --upgrade pip wheel
 
@@ -43,6 +43,6 @@ RUN wget https://github.com/louwrentius/waveshare-12.48inch-3-color-e-ink/archiv
 
 COPY images images
 
-RUN ["cross-build-end"]
+# RUN ["cross-build-end"]
 
 CMD ["PYTHONPATH=/opt/waveshare-sdk/python/lib:${PYTHONPATH}","python3", "/usr/app/waveshare-display/display.py", "-i", "/usr/app/images/lords.jpg"]
