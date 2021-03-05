@@ -42,7 +42,6 @@ RUN wget https://github.com/louwrentius/waveshare-12.48inch-3-color-e-ink/archiv
   && ls -al
 
 COPY images images
+COPY entrypoint.sh entrypoint.sh
 
-# RUN ["cross-build-end"]
-
-CMD ["PYTHONPATH=/opt/waveshare-sdk/python/lib:${PYTHONPATH}","python3", "/usr/app/waveshare-display/display.py", "-i", "/usr/app/images/lords.jpg"]
+CMD [ "/usr/app/entrypoint.sh" ]
