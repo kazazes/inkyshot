@@ -3,5 +3,4 @@
 set -ex
 export PYTHONPATH=/app/lib:${PYTHONPATH}
 
-python3 display.py -i img/bible.jpeg
-python3 loop.py
+python3 loop.py ${INTERVAL:-1}

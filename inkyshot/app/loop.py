@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 import os
 import subprocess
 import time
+import sys
 import re
 
 imagelist = []
@@ -14,6 +15,11 @@ for file in imagedir:
         imagelist.append({"filename": file, "fuzz": None})
 
 print(imagelist)
+interval = 5  # mins
+if sys.argv[1]:
+    interval = sys.argv[1]
+
+print("Using " + interval + " min. interval")
 
 
 def run_cmd(cmdline):
@@ -39,7 +45,6 @@ while True:
     print(cmdline)
     run_cmd(cmdline)
 
-    dt = datetime.now() + timedelta(minutes=5)
-    #dt = dt.replace(minute=0)
+    dt = datetime.now() + timedelta(minutes=interval)
     while datetime.now() < dt:
-        time.sleep(60)
+        time.sleep(30)
