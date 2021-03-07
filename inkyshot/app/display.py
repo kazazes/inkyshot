@@ -24,6 +24,10 @@ if os.path.exists(libdir):
     sys.path.append(libdir)
 
 
+libdir = os.path.abspath("/usr/app/lib")
+if os.path.exists(libdir):
+    sys.path.append(libdir)
+
 def check_args(settings):
     parser = argparse.ArgumentParser(
         description="This script converts and displays an image on the Waveshare 12.48inch e-Paper Module (B) (black red white)"

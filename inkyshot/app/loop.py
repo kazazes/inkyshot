@@ -6,6 +6,10 @@ import time
 import sys
 import re
 
+libdir = os.path.abspath("/usr/app/lib")
+if os.path.exists(libdir):
+    sys.path.append(libdir)
+
 imagelist = []
 imagedir = os.listdir("/usr/app/img")
 for file in imagedir:
@@ -17,7 +21,7 @@ for file in imagedir:
 print(imagelist)
 interval = 5  # mins
 if sys.argv[1]:
-    interval = sys.argv[1]
+    interval = int(sys.argv[1])
 
 print("Using " + interval + " min. interval")
 
