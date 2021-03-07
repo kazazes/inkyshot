@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 from datetime import datetime, timedelta
 import os
+from random import random
 import subprocess
 import time
 import sys
 import re
+import os, subprocess
 
 libdir = os.path.abspath("/usr/app/lib")
 if os.path.exists(libdir):
@@ -16,7 +18,13 @@ for file in imagedir:
     extensionsToCheck = ('.jpeg', '.jpg', '.svg')
 
     if file.endswith(extensionsToCheck):
-        imagelist.append({"filename": file, "fuzz": None})
+        imagelist.append({"filename": "/usr/app/img/" + file, "fuzz": None})
+
+    shuffleEnv = os.getenv("SHUFFLE", "0")
+    shouldShuffle = bool(int(shuffleEnv))
+    if shouldShuffle:
+        print("shuffle... shuffle... shuffle...")
+        random.shuffle(imagelist)
 
 print(imagelist)
 interval = 5  # mins

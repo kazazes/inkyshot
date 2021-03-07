@@ -10,7 +10,6 @@
 #
 # The end-to-end display of an image on a Raspberry Pi 3B+ is over a minute, this is 'normal'.
 #
-import epd12in48b
 import sys
 import os
 import time
@@ -18,6 +17,12 @@ import random
 import subprocess
 import argparse
 from PIL import Image
+import logging
+
+logging.basicConfig(
+    format='%(asctime)s %(levelname)-8s %(message)s',
+    level=logging.INFO,
+    datefmt='%Y-%m-%d %H:%M:%S')
 
 libdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib')
 if os.path.exists(libdir):
@@ -27,6 +32,8 @@ if os.path.exists(libdir):
 libdir = os.path.abspath("/usr/app/lib")
 if os.path.exists(libdir):
     sys.path.append(libdir)
+
+import epd12in48b
 
 def check_args(settings):
     parser = argparse.ArgumentParser(
@@ -71,6 +78,7 @@ def run_cmd(cmdline):
 
 
 def convert_image(settings):
+    logging.info("Begin convert")
     res = settings["resolution"]
     image = settings["image"]
     black = settings["black_image"]
@@ -97,7 +105,9 @@ def convert_image(settings):
         cmd_red.insert(2, "-rotate")
         cmd_red.insert(3, rotate)
 
+    logging.info("Run blk convert")
     run_cmd(cmd_black)
+    logging.info("Run red convert")
     run_cmd(cmd_red)
 
 
@@ -105,14 +115,19 @@ def display_image(settings):
     epd = epd12in48b.EPD()
     epd.Init()
     # epd.clear()
+    logging.info("Create blk img")
     Blackimage = Image.new(
         "1", (epd12in48b.EPD_WIDTH, epd12in48b.EPD_HEIGHT), 255)
+    logging.info("Create red img")
     Redimage = Image.new(
         "1", (epd12in48b.EPD_WIDTH, epd12in48b.EPD_HEIGHT), 255)
     Blackimage = Image.open(settings["black_image"])
     Redimage = Image.open(settings["red_image"])
+    logging.info("Imgs opened, displaying")
     epd.display(Blackimage, Redimage)
+    logging.info("Displayed, now start sleeping")
     epd.EPD_Sleep()
+    logging.info("Sleeping")
 
 
 def get_settings():
