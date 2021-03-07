@@ -23,7 +23,7 @@ interval = 5  # mins
 if sys.argv[1]:
     interval = int(sys.argv[1])
 
-print("Using " + interval + " min. interval")
+print("Using " + str(interval) + " min. interval")
 
 
 def run_cmd(cmdline):
