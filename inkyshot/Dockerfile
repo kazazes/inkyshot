@@ -1,5 +1,4 @@
 FROM balenalib/raspberry-pi-python:3.7
-
 # RUN ["cross-build-start"]
 
 RUN install_packages \
