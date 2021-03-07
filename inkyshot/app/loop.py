@@ -20,13 +20,13 @@ for file in imagedir:
     if file.endswith(extensionsToCheck):
         imagelist.append({"filename": "/usr/app/img/" + file, "fuzz": None})
 
-    shuffleEnv = os.getenv("SHUFFLE", "0")
-    shouldShuffle = bool(int(shuffleEnv))
-    if shouldShuffle:
-        print("shuffle... shuffle... shuffle...")
-        random.shuffle(imagelist)
-    else:
-        print("not shuffling... bible first")
+shuffleEnv = os.getenv("SHUFFLE", "0")
+shouldShuffle = bool(int(shuffleEnv))
+if shouldShuffle:
+    print("shuffle... shuffle... shuffle...")
+    random.shuffle(imagelist)
+else:
+    print("not shuffling... bible first")
 
 print(imagelist)
 interval = 5  # mins
