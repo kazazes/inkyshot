@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from datetime import datetime, timedelta
 import os
-from random import random
+import random
 import subprocess
 import time
 import sys
@@ -25,6 +25,8 @@ for file in imagedir:
     if shouldShuffle:
         print("shuffle... shuffle... shuffle...")
         random.shuffle(imagelist)
+    else:
+        print("not shuffling... bible first")
 
 print(imagelist)
 interval = 5  # mins
